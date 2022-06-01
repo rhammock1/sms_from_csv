@@ -9,4 +9,4 @@ do
   echo "Texting $NUMBER"
   osascript -e "tell application \"Messages\" to send \"$MESSAGE\" to buddy \"$NUMBER\""
   sleep 0.5
-done < <(tail -n +2 $PATH_TO_CSV)
+done < $PATH_TO_CSV
