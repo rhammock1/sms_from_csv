@@ -8,4 +8,5 @@ do
   NUMBER=${phone_number//[^[:digit:].-]/}
   echo "Texting $NUMBER"
   osascript -e "tell application \"Messages\" to send \"$MESSAGE\" to buddy \"$NUMBER\""
+  sleep 0.5
 done < <(tail -n +2 $PATH_TO_CSV)
