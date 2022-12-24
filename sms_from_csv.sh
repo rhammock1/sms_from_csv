@@ -1,13 +1,19 @@
 #!/bin/bash
 
 PATH_TO_CSV=$1
-MESSAGE="Hello from Shell Script https://google.com"
+MESSAGE=''
 
 # Make sure that osascript is installed
 if ! [ -x $(command -v osascript) ]; then 
   echo "Command 'osascript' is required for this program. Aborting!" 
   exit 1
 fi
+
+if [[ $2 != *.txt ]]; then
+  echo "Please provide a txt file with the message to send."
+  exit 1
+fi
+MESSAGE=$(cat $2)
 
 while IFS="," read -r phone_number
 do

@@ -1,0 +1,4 @@
+Hello from Shell Script!
+Check out my website https://smokeybear.dev
+
+However, I haven't updated Heroku recently, so my projects may not load correctly. I'm working on it!
