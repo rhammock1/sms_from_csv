@@ -30,11 +30,19 @@ fi
 if [[ $PATH_TO_MESSAGE != *.txt ]]; then
   echo "Please provide a txt file with the message to send."
   exit 1
-elif [[ $PATH_TO_CSV != *.csv ]]; then
-  echo "Please provide a csv file with the phone numbers to send to."
+elif [[ ! -f $PATH_TO_MESSAGE ]]; then
+  echo "The txt file does not exist."
   exit 1
 fi
 MESSAGE=$(cat $PATH_TO_MESSAGE)
+
+if [[ $PATH_TO_CSV != *.csv ]]; then
+  echo "Please provide a csv file with the phone numbers to send to."
+  exit 1
+elif [[ ! -f $PATH_TO_CSV ]]; then
+  echo "The csv file does not exist."
+  exit 1
+fi
 
 while IFS="," read -r phone_number
 do
