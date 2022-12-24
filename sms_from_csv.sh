@@ -1,7 +1,25 @@
 #!/bin/bash
 
-PATH_TO_CSV=$1
+PATH_TO_CSV=''
+PATH_TO_MESSAGE=''
 MESSAGE=''
+
+while test $# -gt 0
+do
+  case "$1" in
+    --message | -m) PATH_TO_MESSAGE=$2
+      ;;
+    --csv | -c) PATH_TO_CSV=$2
+      ;;
+    --help | -h) cat help.txt
+      exit 0
+      ;;
+    --*) echo "No such option: $1"
+      exit 0
+      ;;
+  esac
+  shift
+done
 
 # Make sure that osascript is installed
 if ! [ -x $(command -v osascript) ]; then 
@@ -9,11 +27,14 @@ if ! [ -x $(command -v osascript) ]; then
   exit 1
 fi
 
-if [[ $2 != *.txt ]]; then
+if [[ $PATH_TO_MESSAGE != *.txt ]]; then
   echo "Please provide a txt file with the message to send."
   exit 1
+elif [[ $PATH_TO_CSV != *.csv ]]; then
+  echo "Please provide a csv file with the phone numbers to send to."
+  exit 1
 fi
-MESSAGE=$(cat $2)
+MESSAGE=$(cat $PATH_TO_MESSAGE)
 
 while IFS="," read -r phone_number
 do

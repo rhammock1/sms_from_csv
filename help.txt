@@ -1,0 +1,7 @@
+Usage: [--message | -m] [--csv | -c] [--help | -h]
+    --message | -m
+        [required] Path to the message file or the message itself.
+    --csv | -c) PATH_TO_CSV=$2
+        [required] Path to the csv file.
+    --help | -h) cat clone_help.txt
+        Show this help message.
